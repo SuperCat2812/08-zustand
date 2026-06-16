@@ -1,6 +1,5 @@
 "use client";
 import Modal from "@/components/Modal/Modal";
-import NoteForm from "@/components/NoteForm/NoteForm";
 import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchBox from "@/components/SearchBox/SearchBox";
@@ -10,6 +9,7 @@ import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import css from "./NotesPage.module.css";
 import { TagValue } from "@/types/note";
+import CreateNote from "../../action/create/page";
 interface NotesClientProps {
   tag: TagValue | undefined;
 }
@@ -65,7 +65,7 @@ export default function NotesClient({ tag }: NotesClientProps) {
         )}
         {onModal && (
           <Modal onClose={closeModal}>
-            <NoteForm closeModal={closeModal} />
+            <CreateNote onClose={closeModal} />
           </Modal>
         )}
         {notes.length > 0 && <NoteList notes={notes} />}

@@ -1,15 +1,16 @@
 "use client";
 import NoteForm from "@/components/NoteForm/NoteForm";
 import css from "./CreateNote.module.css";
-import { useRouter } from "next/navigation";
 
-export default function CreateNote() {
-  const router = useRouter();
+interface createNoteProps {
+  onClose: () => void;
+}
+export default function CreateNote({ onClose }: createNoteProps) {
   return (
     <main className={css.main}>
       <div className={css.container}>
         <h1 className={css.title}>Create note</h1>
-        <NoteForm closeModal={router.back} />
+        <NoteForm closeModal={onClose} />
       </div>
     </main>
   );
