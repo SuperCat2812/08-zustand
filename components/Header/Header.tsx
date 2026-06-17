@@ -25,13 +25,6 @@ export default function Header() {
               Notes
             </Link>
           </li>
-          <li>
-            <Link
-              href="/notes/action/create"
-              className={css.navigationLink}>
-              Create
-            </Link>
-          </li>
         </ul>
       </nav>
     </header>

@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import css from "./NotesPage.module.css";
 import { TagValue } from "@/types/note";
+import Link from "next/link";
 interface NotesClientProps {
   tag: TagValue | undefined;
 }
@@ -39,6 +40,13 @@ export default function NotesClient({ tag }: NotesClientProps) {
             query={query}
             updateQuery={updateQuery}
           />
+          <button className={css.button}>
+            <Link
+              href="/notes/action/create"
+              className={css.navigationLink}>
+              Create
+            </Link>
+          </button>
         </header>
         {totalPage > 1 && (
           <Pagination
@@ -47,6 +55,7 @@ export default function NotesClient({ tag }: NotesClientProps) {
             currentPage={page}
           />
         )}
+
         {notes.length > 0 && <NoteList notes={notes} />}
       </div>
     </>
