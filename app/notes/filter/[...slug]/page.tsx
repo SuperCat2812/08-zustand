@@ -34,6 +34,17 @@ export const generateMetadata = async ({
 
   return {
     title,
+    description: `Notes Page in ${title}`,
+    openGraph: {
+      title,
+      description: `Notes Page in ${title}`,
+      url: `http://localhost:3000/notes/filter/${category}`,
+      images: [
+        {
+          url: " https://ac.goit.global/fullstack/react/notehub-og-meta.jpg?_gl=1*1mlqxp9*_gcl_au*NTc5NjMyMzM4LjE3Nzg5NDA5OTk.*_ga*MTIyMjk4MTE4NS4xNzc4ODQzNzA0*_ga_PW0T7S5LDQ*czE3ODE1MzAwMjQkbzEyNiRnMCR0MTc4MTUzMDAzMSRqNTMkbDAkaDA. ",
+        },
+      ],
+    },
   };
 };
 

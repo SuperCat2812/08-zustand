@@ -1,13 +1,13 @@
+"use client";
 import css from "./NoteForm.module.css";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { addNote } from "@/lib/api";
 import { useCreateNote } from "@/lib/store/noteStore";
 import { ChangeEvent } from "react";
+import { useRouter } from "next/navigation";
 
-interface NoteFormProps {
-  closeModal: () => void;
-}
-export default function NoteForm({ closeModal }: NoteFormProps) {
+export default function NoteForm() {
+  const router = useRouter();
   const { draft, setDraft, clearDraft } = useCreateNote();
   const queryClient = useQueryClient();
   const changeData = (
@@ -19,7 +19,7 @@ export default function NoteForm({ closeModal }: NoteFormProps) {
     mutationFn: addNote,
     onSuccess() {
       queryClient.invalidateQueries({ queryKey: ["note"] });
-      closeModal();
+      router.back();
       clearDraft();
     },
   });
@@ -78,7 +78,7 @@ export default function NoteForm({ closeModal }: NoteFormProps) {
         <button
           type="button"
           className={css.cancelButton}
-          onClick={closeModal}>
+          onClick={router.back}>
           Cancel
         </button>
         <button

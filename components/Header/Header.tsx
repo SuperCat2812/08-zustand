@@ -5,16 +5,32 @@ export default function Header() {
     <header className={css.header}>
       <Link
         href="/"
-        aria-label="Home">
+        aria-label="Home"
+        className={css.headerLink}>
         NoteHub
       </Link>
       <nav aria-label="Main Navigation">
         <ul className={css.navigation}>
           <li>
-            <Link href="/">Home</Link>
+            <Link
+              href="/"
+              className={css.navigationLink}>
+              Home
+            </Link>
           </li>
           <li>
-            <Link href="/notes/filter/all">Notes</Link>
+            <Link
+              href="/notes/filter/all"
+              className={css.navigationLink}>
+              Notes
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/notes/action/create"
+              className={css.navigationLink}>
+              Create
+            </Link>
           </li>
         </ul>
       </nav>

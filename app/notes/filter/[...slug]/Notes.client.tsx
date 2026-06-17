@@ -1,5 +1,4 @@
 "use client";
-import Modal from "@/components/Modal/Modal";
 import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchBox from "@/components/SearchBox/SearchBox";
@@ -9,7 +8,6 @@ import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import css from "./NotesPage.module.css";
 import { TagValue } from "@/types/note";
-import CreateNote from "../../action/create/page";
 interface NotesClientProps {
   tag: TagValue | undefined;
 }
@@ -30,13 +28,6 @@ export default function NotesClient({ tag }: NotesClientProps) {
 
   const notes = data?.notes || [];
   const totalPage = data?.totalPages || 1;
-  const [onModal, setOnModal] = useState(false);
-  const openModal = () => {
-    setOnModal(true);
-  };
-  const closeModal = () => {
-    setOnModal(false);
-  };
   const handleChangePage = (page: number) => {
     setPage(page);
   };
@@ -48,13 +39,6 @@ export default function NotesClient({ tag }: NotesClientProps) {
             query={query}
             updateQuery={updateQuery}
           />
-
-          <button
-            type="button"
-            onClick={openModal}
-            className={css.button}>
-            Create Note
-          </button>
         </header>
         {totalPage > 1 && (
           <Pagination
@@ -62,11 +46,6 @@ export default function NotesClient({ tag }: NotesClientProps) {
             pageCount={totalPage}
             currentPage={page}
           />
-        )}
-        {onModal && (
-          <Modal onClose={closeModal}>
-            <CreateNote onClose={closeModal} />
-          </Modal>
         )}
         {notes.length > 0 && <NoteList notes={notes} />}
       </div>

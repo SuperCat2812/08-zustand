@@ -10,18 +10,23 @@ import { Metadata } from "next";
 type Props = {
   params: Promise<{ id: string }>;
 };
-export const generationMeta = async ({ params }: Props): Promise<Metadata> => {
+export const generateMetadata = async ({
+  params,
+}: Props): Promise<Metadata> => {
   const { id } = await params;
   const note = await fetchNoteById(id);
   return {
     title: note.title,
-    description: "Details of Note",
+    description: `Details of Note ${note.title}`,
     openGraph: {
       title: note.title,
-      description: "Details of Note",
+      description: `Details of Note ${note.title}`,
       url: `http://localhost:3000/notes/${note.id}`,
-      images:
-        "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg?_gl=1*1mlqxp9*_gcl_au*NTc5NjMyMzM4LjE3Nzg5NDA5OTk.*_ga*MTIyMjk4MTE4NS4xNzc4ODQzNzA0*_ga_PW0T7S5LDQ*czE3ODE1MzAwMjQkbzEyNiRnMCR0MTc4MTUzMDAzMSRqNTMkbDAkaDA.",
+      images: [
+        {
+          url: " https://ac.goit.global/fullstack/react/notehub-og-meta.jpg?_gl=1*1mlqxp9*_gcl_au*NTc5NjMyMzM4LjE3Nzg5NDA5OTk.*_ga*MTIyMjk4MTE4NS4xNzc4ODQzNzA0*_ga_PW0T7S5LDQ*czE3ODE1MzAwMjQkbzEyNiRnMCR0MTc4MTUzMDAzMSRqNTMkbDAkaDA. ",
+        },
+      ],
     },
   };
 };
