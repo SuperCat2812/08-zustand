@@ -2,10 +2,10 @@ import { Metadata } from "next";
 import css from "./Home.module.css";
 export const metadata: Metadata = {
   title: "404 - Page not found",
-  description: `Page fount wrong code 404`,
+  description: `Page not found. Error code 404`,
   openGraph: {
     title: "404 - Page not found",
-    description: `Page fount wrong code 404`,
+    description: `Page not found. Error code 404`,
     url: "https://08-zustand-ruddy-two.vercel.app/error",
     images: [
       {
